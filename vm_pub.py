@@ -41,11 +41,19 @@ if __name__ == '__main__':
 
     while True:
         #replace user with your USC username in all subscriptions
-        client.publish("user/ipinfo", f"{ip_address}")
-        print("Publishing ip address")
+        client.publish("cnlei", f"{ip_address}")
+        print("Publishing ip address", ip_address)
         time.sleep(4)
 
         #get date and time 
         """your code here"""
+        present = datetime.now()
+
         #publish date and time in their own topics
         """your code here"""
+        date_string = present.strftime("%m/%d/%Y %H:%M:%S")
+        date_list = date_string.split(' ', 1)
+        print(date_list[0])
+        print(date_list[1])
+        client.publish("cnlei", f"{date_list[0]}")
+        client.publish("cnlei", f"{date_list[1]}")
